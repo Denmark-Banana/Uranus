@@ -1,0 +1,14 @@
+{
+  "name": "uranus",
+  "version": "1.0.0",
+  "description": "React App",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Denmark-Banana/Uranus.git"
+  },
+  "author": "Denmark-Banana",
+  "license": "ISC"
+}
