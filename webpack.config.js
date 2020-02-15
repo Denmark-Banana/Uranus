@@ -3,10 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const webpack = require("webpack");
-const dotenv = require("dotenv");
-dotenv.config();
-
-const PORT = process.env.PORT || 9000;
+const PORT = 4000;
 
 module.exports = {
   mode: "development",
