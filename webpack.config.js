@@ -1,21 +1,21 @@
-const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const webpack = require("webpack");
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
 const PORT = 4000;
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
   entry: {
-    main: "./src/index.js"
+    main: './src/index.js',
   },
   output: {
-    filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "build")
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'build'),
   },
   resolve: {
-    extensions: ["*", ".js", ".jsx"]
+    extensions: ['*', '.js', '.jsx'],
   },
   module: {
     rules: [
@@ -26,48 +26,43 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
             options: {
               hmr: true,
-              reloadAll: true
-            }
+              reloadAll: true,
+            },
           },
-          "css-loader",
-          "sass-loader"
-        ]
+          'css-loader',
+          'sass-loader',
+        ],
       },
       {
         test: /\.(png|jpg|svg|gif)/,
-        use: ["file-loader"]
+        use: ['file-loader'],
       },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: 'babel-loader',
+        },
       },
-    ]
+    ],
   },
-  devtool: "inline-source-map",
+  devtool: 'inline-source-map',
   devServer: {
-    contentBase: "./build",
+    contentBase: './build',
     noInfo: true,
     open: true,
     port: PORT,
-    after: function(app, server) {
-      app.listen(PORT, function() {
-        console.log(`Webpack dev server is listening on port ${PORT}`);
-      });
-    }
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: "webpack-react-start-kit",
-      template: "./public/index.html"
+      title: 'webpack-react-start-kit',
+      template: './public/index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+      filename: '[name].css',
+      chunkFilename: '[id].css',
     }),
-    new webpack.HotModuleReplacementPlugin()
-  ]
+    new webpack.HotModuleReplacementPlugin(),
+  ],
 };
