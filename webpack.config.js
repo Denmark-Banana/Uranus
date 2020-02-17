@@ -52,6 +52,7 @@ module.exports = {
     noInfo: true,
     open: true,
     port: PORT,
+    proxy: { "/api": "http://localhost:3000" }
   },
   plugins: [
     new CleanWebpackPlugin(),

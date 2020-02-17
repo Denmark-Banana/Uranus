@@ -9,20 +9,26 @@ class Home extends React.Component {
   getTickers = async () => {
     const {
       data: { data },
-    } = await axios.get('https://api.bithumb.com/public/ticker/ALL_KRW');
+    } = await axios.get('/api/ticker');
     this.setState({ tickers: Object.entries(data) });
     console.log(this.state.tickers);
   };
+  getBalance = async () => {
+    const {
+      data: { data },
+    } = await axios.get('/api/info/balance');
+    //this.setState({ tickers: Object.entries(data) });
+    console.log(data);
+  }
   componentDidMount() {
     this.getTickers();
+    //this.getBalance();
   }
   render() {
     const { tickers } = this.state;
     return (
       <section>
-        <div>
-          <TickerList tickers={tickers}/>
-        </div>
+        <div>{<TickerList tickers={tickers} />}</div>
       </section>
     );
   }

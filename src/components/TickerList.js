@@ -27,7 +27,7 @@ function TickerList({ tickers }) {
           <Ticker
             key={ticker[0]}
             id={ticker[0]}
-            min_price={ticker[1]["min_price"]}
+            min_price={ticker[1].min_price}
             max_price={ticker[1].max_price}
             units_traded_24H={ticker[1].units_traded}
             acc_trade_value_24H={ticker[1].acc_trade_value_24H}
