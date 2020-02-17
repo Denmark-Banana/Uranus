@@ -22,7 +22,7 @@ class Home extends React.Component {
   }
   componentDidMount() {
     this.getTickers();
-    //this.getBalance();
+    this.getBalance();
   }
   render() {
     const { tickers } = this.state;
