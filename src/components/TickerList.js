@@ -3,6 +3,9 @@ import Ticker from './Ticker';
 import PropTypes from "prop-types"
 
 function TickerList({ tickers }) {
+  if(!tickers) {
+    return null;
+  }
   return (
     <table>
       <tbody>
@@ -23,14 +26,14 @@ function TickerList({ tickers }) {
             <p>최근 24시간 거래금액</p>
           </td>
         </tr>
-        {tickers.map(ticker => (
+        {tickers.map(([key, ticker]) => (
           <Ticker
-            key={ticker[0]}
-            id={ticker[0]}
-            min_price={ticker[1].min_price}
-            max_price={ticker[1].max_price}
-            units_traded_24H={ticker[1].units_traded}
-            acc_trade_value_24H={ticker[1].acc_trade_value_24H}
+            key={key}
+            id={key}
+            min_price={ticker.min_price}
+            max_price={ticker.max_price}
+            units_traded_24H={ticker.units_traded}
+            acc_trade_value_24H={ticker.acc_trade_value_24H}
           />
         ))}
       </tbody>
