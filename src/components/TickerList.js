@@ -1,31 +1,29 @@
 import React from 'react';
 import Ticker from './Ticker';
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types';
+
+import Table from '@material-ui/core/Table';
+import TableHead from '@material-ui/core/TableHead';
+import TableBody from '@material-ui/core/TableBody';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
 
 function TickerList({ tickers }) {
-  if(!tickers) {
+  if (!tickers) {
     return null;
   }
   return (
-    <table>
-      <tbody>
-        <tr>
-          <td>
-            <p>암호화폐명</p>
-          </td>
-          <td>
-            <p>최저가</p>
-          </td>
-          <td>
-            <p>최고가</p>
-          </td>
-          <td>
-            <p>최근 24시간 거래량</p>
-          </td>
-          <td>
-            <p>최근 24시간 거래금액</p>
-          </td>
-        </tr>
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell>암호화폐명</TableCell>
+          <TableCell>최저가</TableCell>
+          <TableCell>최고가</TableCell>
+          <TableCell>최근 24시간 거래량</TableCell>
+          <TableCell>최근 24시간 거래금액</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
         {tickers.map(([key, ticker]) => (
           <Ticker
             key={key}
@@ -36,13 +34,13 @@ function TickerList({ tickers }) {
             acc_trade_value_24H={ticker.acc_trade_value_24H}
           />
         ))}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   );
 }
 
-TickerList.propTypes ={
-  tickers: PropTypes.array.isRequired
+TickerList.propTypes = {
+  tickers: PropTypes.array.isRequired,
 };
 
 export default TickerList;
