@@ -10,10 +10,20 @@ const app = express();
 
 app.use(helmet());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
 app.use('/api', apiRouter);
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(err.status || 500);
+  res.json({
+    errors: {
+      message: err.message,
+    },
+  });
+});
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
 
