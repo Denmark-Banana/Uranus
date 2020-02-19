@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { withStyles } from '@material-ui/core/styles';
 import { Component } from 'react';
+import TopChart from './TopChart';
 
 const styles = theme => ({
   root: {
@@ -30,14 +31,15 @@ class TickerList extends Component {
     }
     return (
       <Paper className={classes.root}>
+        {/* <TopChart tickers={tickers.splice(0,5)}/> */}
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
               <TableCell>암호화폐명</TableCell>
               <TableCell>최저가</TableCell>
               <TableCell>최고가</TableCell>
-              <TableCell>최근 24시간 거래량</TableCell>
-              <TableCell>최근 24시간 거래금액</TableCell>
+              <TableCell>변동률(24H)</TableCell>
+              <TableCell>거래금액(24H)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -47,7 +49,7 @@ class TickerList extends Component {
                 id={key}
                 min_price={ticker.min_price}
                 max_price={ticker.max_price}
-                units_traded_24H={ticker.units_traded}
+                fluctate_rate_24H={ticker.fluctate_rate_24H}
                 acc_trade_value_24H={ticker.acc_trade_value_24H}
               />
             ))}
@@ -60,6 +62,7 @@ class TickerList extends Component {
 
 TickerList.propTypes = {
   tickers: PropTypes.array.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(TickerList);

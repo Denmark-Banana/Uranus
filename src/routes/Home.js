@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import TickerList from '../components/TickerList';
 import Balance from '../components/Balance';
+import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
@@ -77,12 +78,15 @@ class Home extends React.Component {
           total_btc={info.total_btc}
           available_krw={info.available_krw}
           available_btc={info.available_btc}
-          xcoin_last_btc={info.xcoin_last_btc}
         />
         <TickerList tickers={tickers} />
       </section>
     );
   }
 }
+
+Home.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(Home);

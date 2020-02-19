@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-function Balance({
-  total_krw,
-  total_btc,
-  available_krw,
-  available_btc,
-  xcoin_last_btc,
-}) {
-  return (
-    <div>
-      <h3>total_krw: {total_krw}</h3>
-      <h3>total_btc: {total_btc}</h3>
-      <h3>available_krw: {available_krw}</h3>
-      <h3>available_btc: {available_btc}</h3>
-      <h3>xcoin_last_btc: {xcoin_last_btc}</h3>
-    </div>
-  );
+class Balance extends Component {
+  render() {
+    const {
+      total_krw,
+      total_btc,
+      available_krw,
+      available_btc,
+    } = this.props;
+
+    return (
+      <div>
+        <h5>전체 원화(KRW) 금액: {Number(total_krw)} 원</h5>
+        <h5>전체 BTC 수량: {Number(total_btc)} 개</h5>
+        <h5>주문 가능 원화(KRW) 금액: {Number(available_krw)} 원</h5>
+        <h5>주문 가능 BTC 수량: {Number(available_btc)} 개</h5>
+      </div>
+    );
+  }
 }
 
 Balance.defaultProps = {
@@ -24,7 +26,6 @@ Balance.defaultProps = {
   total_btc: '0',
   available_krw: '0',
   available_btc: '0',
-  xcoin_last_btc: '0',
 };
 
 Balance.propTypes = {
@@ -32,7 +33,6 @@ Balance.propTypes = {
   total_btc: PropTypes.string.isRequired,
   available_krw: PropTypes.string.isRequired,
   available_btc: PropTypes.string.isRequired,
-  xcoin_last_btc: PropTypes.string.isRequired,
 };
 
 export default Balance;

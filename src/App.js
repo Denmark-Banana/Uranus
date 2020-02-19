@@ -9,7 +9,7 @@ const theme = createMuiTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme} style = {{padding:'20px'}}>
+    <ThemeProvider theme={theme}>
       <Home />
     </ThemeProvider>
   );
