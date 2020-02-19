@@ -23,6 +23,7 @@ app.use((err, req, res, next) => {
       message: err.message,
     },
   });
+  next();
 });
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));

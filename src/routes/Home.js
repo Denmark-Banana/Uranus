@@ -3,6 +3,22 @@ import axios from 'axios';
 import TickerList from '../components/TickerList';
 import Balance from '../components/Balance';
 
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  root: {
+    background: theme.background,
+    border: 0,
+    borderRadius: 3,
+    boxShadow: theme.boxShadow,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    margin: '10px',
+  },
+});
+
 class Home extends React.Component {
   state = {
     tickers: [],
@@ -56,23 +72,24 @@ class Home extends React.Component {
   }
   render() {
     const { tickers, info } = this.state;
+    const { classes } = this.props;
     return (
       <section>
         <div>
-          {
-            <Balance
-              total_krw={info.total_krw}
-              total_btc={info.total_btc}
-              available_krw={info.available_krw}
-              available_btc={info.available_btc}
-              xcoin_last_btc={info.xcoin_last_btc}
-            />
-          }
+          <Button className={classes.root}>Button with Style</Button>
+          <Button className={classes.root}>Button with Style</Button>
         </div>
-        <div>{<TickerList tickers={tickers} />}</div>
+        <Balance
+          total_krw={info.total_krw}
+          total_btc={info.total_btc}
+          available_krw={info.available_krw}
+          available_btc={info.available_btc}
+          xcoin_last_btc={info.xcoin_last_btc}
+        />
+        <TickerList tickers={tickers} />
       </section>
     );
   }
 }
 
-export default Home;
+export default withStyles(styles)(Home);
