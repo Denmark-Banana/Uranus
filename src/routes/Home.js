@@ -24,6 +24,19 @@ class Home extends React.Component {
     tickers: [],
     info: {},
   };
+  errorHandler = e => {
+    if (e.response) {
+      //요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답
+      console.log(e.response);
+    } else if (e.request) {
+      //요청이 이루어졌으나 응답을 받지 못함
+      console.log(e.request);
+    } else {
+      //오류를 발생시킨 요청을 설정하는 중에 문제가 발생
+      console.log('Error', e.message);
+    }
+    console.log(e.config);
+  }
   getTickers = async () => {
     try {
       const {
@@ -32,17 +45,7 @@ class Home extends React.Component {
       this.setState({ tickers: Object.entries(data) });
       console.log(this.state.tickers);
     } catch (e) {
-      if (e.response) {
-        //요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답
-        console.log(e.response);
-      } else if (e.request) {
-        //요청이 이루어졌으나 응답을 받지 못함
-        console.log(e.request);
-      } else {
-        //오류를 발생시킨 요청을 설정하는 중에 문제가 발생
-        console.log('Error', e.message);
-      }
-      console.log(e.config);
+      this.errorHandler(e);
     }
   };
   getBalance = async () => {
@@ -53,17 +56,7 @@ class Home extends React.Component {
       this.setState({ info: data });
       console.log(this.state.info);
     } catch (e) {
-      if (e.response) {
-        //요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답
-        console.log(e.response);
-      } else if (e.request) {
-        //요청이 이루어졌으나 응답을 받지 못함
-        console.log(e.request);
-      } else {
-        //오류를 발생시킨 요청을 설정하는 중에 문제가 발생
-        console.log('Error', e.message);
-      }
-      console.log(e.config);
+      this.errorHandler(e);
     }
   };
   componentDidMount() {
@@ -75,10 +68,10 @@ class Home extends React.Component {
     const { classes } = this.props;
     return (
       <section>
-        <div>
+        {/* <div>
           <Button className={classes.root}>Button with Style</Button>
           <Button className={classes.root}>Button with Style</Button>
-        </div>
+        </div> */}
         <Balance
           total_krw={info.total_krw}
           total_btc={info.total_btc}
