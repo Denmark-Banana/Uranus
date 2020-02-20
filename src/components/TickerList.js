@@ -31,7 +31,7 @@ class TickerList extends Component {
     }
     return (
       <Paper className={classes.root}>
-        {/* <TopChart tickers={tickers.splice(0,5)}/> */}
+        <TopChart tickers={tickers.splice(0,5)}/>
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
@@ -40,6 +40,10 @@ class TickerList extends Component {
               <TableCell>최고가</TableCell>
               <TableCell>변동률(24H)</TableCell>
               <TableCell>거래금액(24H)</TableCell>
+              <TableCell>입금</TableCell>
+              <TableCell>출금</TableCell>
+              <TableCell>차트</TableCell>
+              <TableCell>거래</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

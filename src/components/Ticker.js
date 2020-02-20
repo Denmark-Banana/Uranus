@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
+import InputIcon from '@material-ui/icons/Input';
+import MoneyIcon from '@material-ui/icons/Money';
+import TransferWithinAStationIcon from '@material-ui/icons/TransferWithinAStation';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 
 function Ticker({
   id,
@@ -16,7 +20,11 @@ function Ticker({
       <TableCell>{min_price} 원</TableCell>
       <TableCell>{max_price} 원</TableCell>
       <TableCell>{fluctate_rate_24H} %</TableCell>
-      <TableCell>{Number(acc_trade_value_24H)} 원</TableCell>
+      <TableCell>{parseInt(acc_trade_value_24H)} 원</TableCell>
+      <TableCell><InputIcon /></TableCell>
+      <TableCell><MoneyIcon /></TableCell>
+      <TableCell><TrendingUpIcon /></TableCell>
+      <TableCell><TransferWithinAStationIcon/></TableCell>
     </TableRow>
   );
 }
