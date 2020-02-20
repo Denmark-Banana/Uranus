@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import { Paper, Typography } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
     padding: theme.spacing(3),
-    //background: '#eeeeee',
+    //background: theme.background,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
   paper: {
-    padding: theme.spacing(3),
-    textAlign: 'center',
-    color: theme.palette.text.primary,
-    marginLeft: 15,
-    marginRight: 15,
     minWidth: 200,
-    "&:hover": {
+    padding: theme.spacing(3),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    textAlign: 'center',
+
+    '&:hover': {
       cursor: 'pointer',
-      boxShadow: '0 2px 3px 1px gray'
+      boxShadow: theme.boxShadow,
     },
   },
 });
@@ -36,9 +36,11 @@ class TopChart extends Component {
       <div className={classes.root}>
         {tickers.map(([key, ticker]) => (
           <Paper className={classes.paper} key={key}>
-            {key}
-            <br></br> {ticker.max_price} 원<br></br> {ticker.fluctate_rate_24H}{' '}
-            %
+            <Typography color='primary' noWrap>
+              {key}
+              <br></br> {ticker.max_price} 원<br></br>{' '}
+              {ticker.fluctate_rate_24H} %
+            </Typography>
           </Paper>
         ))}
       </div>

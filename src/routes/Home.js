@@ -4,22 +4,6 @@ import TickerList from '../components/TickerList';
 import Balance from '../components/Balance';
 import PropTypes from 'prop-types';
 
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-
-const styles = theme => ({
-  root: {
-    background: theme.background,
-    border: 0,
-    borderRadius: 3,
-    boxShadow: theme.boxShadow,
-    color: 'white',
-    height: 48,
-    padding: '0 30px',
-    margin: '10px',
-  },
-});
-
 class Home extends React.Component {
   state = {
     tickers: [],
@@ -43,8 +27,8 @@ class Home extends React.Component {
       const {
         data: { data },
       } = await axios.get('/api/ticker');
+      console.log(data);
       this.setState({ tickers: Object.entries(data) });
-      console.log(this.state.tickers);
     } catch (e) {
       this.errorHandler(e);
     }
@@ -66,13 +50,8 @@ class Home extends React.Component {
   }
   render() {
     const { tickers, info } = this.state;
-    const { classes } = this.props;
     return (
       <section>
-        {/* <div>
-          <Button className={classes.root}>Button with Style</Button>
-          <Button className={classes.root}>Button with Style</Button>
-        </div> */}
         <Balance
           total_krw={info.total_krw}
           total_btc={info.total_btc}
@@ -85,8 +64,4 @@ class Home extends React.Component {
   }
 }
 
-Home.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(Home);
+export default Home;
