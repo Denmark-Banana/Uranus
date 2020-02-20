@@ -12,10 +12,8 @@ class Balance extends Component {
 
     return (
       <div>
-        <h5>전체 원화(KRW) 금액: {parseInt(total_krw)} 원</h5>
-        <h5>전체 BTC 수량: {parseInt(total_btc)} 개</h5>
-        <h5>주문 가능 원화(KRW) 금액: {parseInt(available_krw)} 원</h5>
-        <h5>주문 가능 BTC 수량: {parseInt(available_btc)} 개</h5>
+        <h5>주문 가능 원화(KRW) 금액: {parseInt(available_krw)} 원 / 전체 원화(KRW) 금액: {parseInt(total_krw)} 원</h5>
+        <h5>주문 가능 BTC 수량: {parseInt(available_btc)} 개 / 전체 BTC 수량: {parseInt(total_btc)} 개</h5>
       </div>
     );
   }

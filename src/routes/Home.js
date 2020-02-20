@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import TickerList from '../components/TickerList';
 import Balance from '../components/Balance';
-import PropTypes from 'prop-types';
 
 class Home extends React.Component {
   state = {
