@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Paper, Typography, CardMedia } from '@material-ui/core';
-import Image from '../../public/img/graph.png';
 
 const styles = theme => ({
   root: {
@@ -19,7 +18,6 @@ const styles = theme => ({
     marginRight: theme.spacing(1),
     textAlign: 'left',
     borderRadius: theme.spacing(1),
-    //backgroundImage: `url(${Image})`,
 
     '&:hover': {
       cursor: 'pointer',
@@ -28,11 +26,12 @@ const styles = theme => ({
   },
 });
 
-class TopChart extends Component {
+class TopChart extends React.Component {
   render() {
     const { tickers, classes } = this.props;
+    if (!tickers || !tickers.length) return null;
     console.log(tickers);
-    if (!tickers) return null;
+    
     return (
       <div className={classes.root}>
         {tickers.map(([key, ticker]) => (

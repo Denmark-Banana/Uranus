@@ -1,7 +1,7 @@
 import React from 'react';
 
-import TickerList from '../components/TickerList';
-import Balance from '../components/Balance';
+import TickerList from '../components/ticker/TickerList';
+import Balance from '../components/info/Balance';
 import { getData } from '../util/Axios';
 
 class Home extends React.Component {
@@ -9,7 +9,6 @@ class Home extends React.Component {
     tickers: [],
     info: {},
   };
-
 
   componentDidMount = async () => {
     const tickers = await getData('/api/ticker');

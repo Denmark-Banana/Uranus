@@ -1,5 +1,8 @@
 import React from 'react';
 import Home from './routes/Home';
+import Header from './components/partials/Header';
+import Footer from './components/partials/Footer';
+
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import './App.css';
 import { purple, red } from '@material-ui/core/colors';
@@ -15,9 +18,11 @@ const theme = createMuiTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <Home />
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <Header />
+        <Home />
+        <Footer />
+      </ThemeProvider>
   );
 }
 
