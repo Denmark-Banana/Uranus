@@ -19,12 +19,22 @@ function Ticker({
       <TableCell>{id}</TableCell>
       <TableCell>{min_price} 원</TableCell>
       <TableCell>{max_price} 원</TableCell>
-      <TableCell>{fluctate_rate_24H} %</TableCell>
+      <TableCell>
+        {fluctate_rate_24H > 0 ? '+' + fluctate_rate_24H : fluctate_rate_24H}%
+      </TableCell>
       <TableCell>{parseInt(acc_trade_value_24H)} 원</TableCell>
-      <TableCell><InputIcon /></TableCell>
-      <TableCell><MoneyIcon /></TableCell>
-      <TableCell><TrendingUpIcon /></TableCell>
-      <TableCell><TransferWithinAStationIcon/></TableCell>
+      <TableCell>
+        <InputIcon />
+      </TableCell>
+      <TableCell>
+        <MoneyIcon />
+      </TableCell>
+      <TableCell>
+        <TrendingUpIcon />
+      </TableCell>
+      <TableCell>
+        <TransferWithinAStationIcon />
+      </TableCell>
     </TableRow>
   );
 }

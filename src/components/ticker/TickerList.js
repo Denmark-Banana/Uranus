@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -9,7 +9,6 @@ import TableCell from '@material-ui/core/TableCell';
 import { withStyles } from '@material-ui/core/styles';
 
 import Ticker from './Ticker';
-import TopChart from './TopChart';
 
 const styles = theme => ({
   root: {
@@ -22,12 +21,11 @@ const styles = theme => ({
   },
 });
 
-class TickerList extends Component {
+class TickerList extends React.Component {
   render() {
     const { tickers, classes } = this.props;
     return (
       <Paper className={classes.root}>
-        <TopChart tickers={tickers.slice(0,5)} />
         <Table className={classes.table}>
           <TableHead>
             <TableRow>

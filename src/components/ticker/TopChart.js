@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Paper, Typography, CardMedia } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
@@ -31,7 +31,7 @@ class TopChart extends React.Component {
     const { tickers, classes } = this.props;
     if (!tickers || !tickers.length) return null;
     console.log(tickers);
-    
+
     return (
       <div className={classes.root}>
         {tickers.map(([key, ticker]) => (
@@ -43,7 +43,10 @@ class TopChart extends React.Component {
               {ticker.max_price} 원
             </Typography>
             <Typography color="secondary">
-              {ticker.fluctate_rate_24H} %
+              {ticker.fluctate_rate_24H > 0
+                ? '+' + ticker.fluctate_rate_24H
+                : ticker.fluctate_rate_24H}{' '}
+              %
             </Typography>
           </Paper>
         ))}

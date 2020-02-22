@@ -1,8 +1,11 @@
 import React from 'react';
+
 import Home from './routes/Home';
+import Info from './routes/Info';
 import Header from './components/partials/Header';
 import Footer from './components/partials/Footer';
 
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import './App.css';
 import { purple, red } from '@material-ui/core/colors';
@@ -18,11 +21,19 @@ const theme = createMuiTheme({
 
 function App() {
   return (
-      <ThemeProvider theme={theme}>
-        <Header />
-        <Home />
-        <Footer />
-      </ThemeProvider>
+    <>
+      <Router>
+        <ThemeProvider theme={theme}>
+          <Header />
+          <Link to="/">Home</Link> <Link to={{ pathname: '/info' }}>Info</Link>{' '}
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/info" component={Info} />
+          </Switch>
+          <Footer />
+        </ThemeProvider>
+      </Router>
+    </>
   );
 }
 
