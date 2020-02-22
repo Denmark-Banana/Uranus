@@ -20,14 +20,13 @@ class Home extends React.Component {
       console.log('Error', e.message);
     }
     console.log(e.config);
-  }
+  };
   getTickers = async () => {
     try {
       const {
         data: { data },
       } = await axios.get('/api/ticker');
-      console.log(data);
-      this.setState({ tickers: Object.entries(data) });
+      return Object.entries(data);
     } catch (e) {
       this.errorHandler(e);
     }
@@ -37,27 +36,30 @@ class Home extends React.Component {
       const {
         data: { data },
       } = await axios.get('/api/info/balance');
-      this.setState({ info: data });
-      console.log(this.state.info);
+      return data;
     } catch (e) {
       this.errorHandler(e);
     }
   };
-  componentDidMount() {
-    this.getTickers();
-    this.getBalance();
-  }
+  componentDidMount = async () => {
+    const tickers = await this.getTickers();
+    const info = await this.getBalance();
+
+    this.setState({ tickers, info });
+  };
   render() {
     const { tickers, info } = this.state;
     return (
       <section>
-        <Balance
-          total_krw={info.total_krw}
-          total_btc={info.total_btc}
-          available_krw={info.available_krw}
-          available_btc={info.available_btc}
-        />
-        <TickerList tickers={tickers} />
+        {info ? (
+          <Balance
+            total_krw={info.total_krw}
+            total_btc={info.total_btc}
+            available_krw={info.available_krw}
+            available_btc={info.available_btc}
+          />
+        ) : null}
+        {tickers ? <TickerList tickers={tickers} /> : null}
       </section>
     );
   }

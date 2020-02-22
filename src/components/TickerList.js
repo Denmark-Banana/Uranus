@@ -1,7 +1,5 @@
 import React from 'react';
-import Ticker from './Ticker';
 import PropTypes from 'prop-types';
-
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
@@ -10,6 +8,8 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { withStyles } from '@material-ui/core/styles';
 import { Component } from 'react';
+
+import Ticker from './Ticker';
 import TopChart from './TopChart';
 
 const styles = theme => ({
@@ -26,12 +26,9 @@ const styles = theme => ({
 class TickerList extends Component {
   render() {
     const { tickers, classes } = this.props;
-    if (!tickers) {
-      return null;
-    }
     return (
       <Paper className={classes.root}>
-        <TopChart tickers={tickers.splice(0,5)}/>
+        <TopChart tickers={tickers.slice(0,5)} />
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
@@ -47,16 +44,18 @@ class TickerList extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {tickers.map(([key, ticker]) => (
-              <Ticker
-                key={key}
-                id={key}
-                min_price={ticker.min_price}
-                max_price={ticker.max_price}
-                fluctate_rate_24H={ticker.fluctate_rate_24H}
-                acc_trade_value_24H={ticker.acc_trade_value_24H}
-              />
-            ))}
+            {tickers
+              ? tickers.map(([key, ticker]) => (
+                  <Ticker
+                    key={key}
+                    id={key}
+                    min_price={ticker.min_price}
+                    max_price={ticker.max_price}
+                    fluctate_rate_24H={ticker.fluctate_rate_24H}
+                    acc_trade_value_24H={ticker.acc_trade_value_24H}
+                  />
+                ))
+              : null}
           </TableBody>
         </Table>
       </Paper>

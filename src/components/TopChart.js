@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Paper, Typography } from '@material-ui/core';
+import { Paper, Typography, CardMedia } from '@material-ui/core';
+import Image from '../../public/img/graph.png';
 
 const styles = theme => ({
   root: {
@@ -16,7 +17,9 @@ const styles = theme => ({
     padding: theme.spacing(3),
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    textAlign: 'center',
+    textAlign: 'left',
+    borderRadius: theme.spacing(1),
+    //backgroundImage: `url(${Image})`,
 
     '&:hover': {
       cursor: 'pointer',
@@ -29,20 +32,23 @@ class TopChart extends Component {
   render() {
     const { tickers, classes } = this.props;
     console.log(tickers);
-    if (!tickers) {
-      return null;
-    }
     return (
       <div className={classes.root}>
-        {tickers.map(([key, ticker]) => (
-          <Paper className={classes.paper} key={key}>
-            <Typography color='primary' noWrap>
-              {key}
-              <br></br> {ticker.max_price} 원<br></br>{' '}
-              {ticker.fluctate_rate_24H} %
-            </Typography>
-          </Paper>
-        ))}
+        {tickers
+          ? tickers.map(([key, ticker]) => (
+              <Paper className={classes.paper} key={key}>
+                <Typography color="primary" noWrap>
+                  {key}
+                </Typography>
+                <Typography color="secondary" variant="h6">
+                  {ticker.max_price} 원
+                </Typography>
+                <Typography color="secondary">
+                  {ticker.fluctate_rate_24H} %
+                </Typography>
+              </Paper>
+            ))
+          : null}
       </div>
     );
   }
