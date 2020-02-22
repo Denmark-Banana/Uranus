@@ -2,6 +2,7 @@ import React from 'react';
 
 import Home from './routes/Home';
 import Info from './routes/Info';
+import Order from './routes/Order';
 import Header from './components/partials/Header';
 import Footer from './components/partials/Footer';
 
@@ -25,10 +26,12 @@ function App() {
       <Router>
         <ThemeProvider theme={theme}>
           <Header />
-          <Link to="/">Home</Link> <Link to={{ pathname: '/info' }}>Info</Link>{' '}
+          <Link to="/">Home</Link>{' '} 
+          <Link to={{ pathname: '/info' }}>Info</Link>{' '}
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/info" component={Info} />
+            <Route path="/order/:id" component={Order} />
           </Switch>
           <Footer />
         </ThemeProvider>

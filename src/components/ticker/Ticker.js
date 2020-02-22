@@ -7,6 +7,8 @@ import MoneyIcon from '@material-ui/icons/Money';
 import TransferWithinAStationIcon from '@material-ui/icons/TransferWithinAStation';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 
+import { Link } from 'react-router-dom';
+
 function Ticker({
   id,
   min_price,
@@ -16,7 +18,22 @@ function Ticker({
 }) {
   return (
     <TableRow>
-      <TableCell>{id}</TableCell>
+      <TableCell>
+        <Link
+          to={{
+            pathname: `/order/${id}`,
+            state: {
+              id,
+              min_price,
+              max_price,
+              fluctate_rate_24H,
+              acc_trade_value_24H,
+            },
+          }}
+        >
+          {id}
+        </Link>
+      </TableCell>
       <TableCell>{min_price} 원</TableCell>
       <TableCell>{max_price} 원</TableCell>
       <TableCell>
