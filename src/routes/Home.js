@@ -1,51 +1,21 @@
 import React from 'react';
-import axios from 'axios';
+
 import TickerList from '../components/TickerList';
 import Balance from '../components/Balance';
+import { getData } from '../util/Axios';
 
 class Home extends React.Component {
   state = {
     tickers: [],
     info: {},
   };
-  errorHandler = e => {
-    if (e.response) {
-      //요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답
-      console.log(e.response);
-    } else if (e.request) {
-      //요청이 이루어졌으나 응답을 받지 못함
-      console.log(e.request);
-    } else {
-      //오류를 발생시킨 요청을 설정하는 중에 문제가 발생
-      console.log('Error', e.message);
-    }
-    console.log(e.config);
-  };
-  getTickers = async () => {
-    try {
-      const {
-        data: { data },
-      } = await axios.get('/api/ticker');
-      return Object.entries(data);
-    } catch (e) {
-      this.errorHandler(e);
-    }
-  };
-  getBalance = async () => {
-    try {
-      const {
-        data: { data },
-      } = await axios.get('/api/info/balance');
-      return data;
-    } catch (e) {
-      this.errorHandler(e);
-    }
-  };
-  componentDidMount = async () => {
-    const tickers = await this.getTickers();
-    const info = await this.getBalance();
 
-    this.setState({ tickers, info });
+
+  componentDidMount = async () => {
+    const tickers = await getData('/api/ticker');
+    const info = await getData('/api/info/balance');
+
+    this.setState({ tickers : Object.entries(tickers), info });
   };
   render() {
     const { tickers, info } = this.state;
