@@ -44,18 +44,16 @@ class TickerList extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {tickers
-              ? tickers.map(([key, ticker]) => (
-                  <Ticker
-                    key={key}
-                    id={key}
-                    min_price={ticker.min_price}
-                    max_price={ticker.max_price}
-                    fluctate_rate_24H={ticker.fluctate_rate_24H}
-                    acc_trade_value_24H={ticker.acc_trade_value_24H}
-                  />
-                ))
-              : null}
+            {tickers?.map(([key, ticker]) => (
+              <Ticker
+                key={key}
+                id={key}
+                min_price={ticker.min_price}
+                max_price={ticker.max_price}
+                fluctate_rate_24H={ticker.fluctate_rate_24H}
+                acc_trade_value_24H={ticker.acc_trade_value_24H}
+              />
+            ))}
           </TableBody>
         </Table>
       </Paper>

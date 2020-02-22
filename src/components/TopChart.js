@@ -32,23 +32,22 @@ class TopChart extends Component {
   render() {
     const { tickers, classes } = this.props;
     console.log(tickers);
+    if (!tickers) return null;
     return (
       <div className={classes.root}>
-        {tickers
-          ? tickers.map(([key, ticker]) => (
-              <Paper className={classes.paper} key={key}>
-                <Typography color="primary" noWrap>
-                  {key}
-                </Typography>
-                <Typography color="secondary" variant="h6">
-                  {ticker.max_price} 원
-                </Typography>
-                <Typography color="secondary">
-                  {ticker.fluctate_rate_24H} %
-                </Typography>
-              </Paper>
-            ))
-          : null}
+        {tickers.map(([key, ticker]) => (
+          <Paper className={classes.paper} key={key}>
+            <Typography color="primary" noWrap>
+              {key}
+            </Typography>
+            <Typography color="secondary" variant="h6">
+              {ticker.max_price} 원
+            </Typography>
+            <Typography color="secondary">
+              {ticker.fluctate_rate_24H} %
+            </Typography>
+          </Paper>
+        ))}
       </div>
     );
   }
