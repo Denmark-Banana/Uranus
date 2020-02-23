@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Paper, Typography } from '@material-ui/core';
 
+import { Link } from 'react-router-dom';
+
 const styles = theme => ({
   root: {
     padding: theme.spacing(3),
@@ -31,11 +33,23 @@ class TopChart extends React.Component {
     const { tickers, classes } = this.props;
     if (!tickers || !tickers.length) return null;
     console.log(tickers);
-
     return (
       <div className={classes.root}>
         {tickers.map(([key, ticker]) => (
           <Paper className={classes.paper} key={key}>
+            <Link
+              to={{
+                pathname: `/order/${key}`,
+                state: {
+                  id: key,
+                  min_price: ticker.min_price,
+                  max_price: ticker.max_price,
+                  fluctate_rate_24H: ticker.fluctate_rate_24H,
+                  acc_trade_value_24H: ticker.acc_trade_value_24H,
+                },
+              }}
+              style={{ textDecoration: 'none' }}
+            >
             <Typography color="primary" noWrap>
               {key}
             </Typography>
@@ -48,6 +62,7 @@ class TopChart extends React.Component {
                 : ticker.fluctate_rate_24H}{' '}
               %
             </Typography>
+            </Link>
           </Paper>
         ))}
       </div>

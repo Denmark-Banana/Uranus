@@ -26,8 +26,8 @@ function App() {
       <Router>
         <ThemeProvider theme={theme}>
           <Header />
-          <Link to="/">Home</Link>{' '} 
-          <Link to={{ pathname: '/info' }}>Info</Link>{' '}
+          <Link to="/" style={{ textDecoration: 'none' }}>Home</Link>{' '} 
+          <Link to={{ pathname: '/info' }} style={{ textDecoration: 'none' }}>Info</Link>{' '}
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/info" component={Info} />

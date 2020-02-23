@@ -29,7 +29,7 @@ function Ticker({
               fluctate_rate_24H,
               acc_trade_value_24H,
             },
-          }}
+          }} style={{ textDecoration: 'none'}}
         >
           {id}
         </Link>
