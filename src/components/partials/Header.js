@@ -2,47 +2,77 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 
-const styles = theme => ({
+import { Link } from 'react-router-dom';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
   menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
+    marginRight: theme.spacing(2),
   },
   title: {
-    display: 'block',
+    flexGrow: 1,
   },
-});
-class Header extends React.Component {
+}));
 
-  render() {
-    const { classes } = this.props;
-    return (
-      <header>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Open drawer"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              className={classes.title}
-              variant="h6"
-              color="inherit"
-              noWrap
-            >
-              Cryptocurrency
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </header>
-    );
-  }
+function Header() {
+  const classes = useStyles();
+  const [menu, setMenu] = React.useState(null);
+  const openMenu = Boolean(menu);
+
+  const handleMenu = event => setMenu(event.currentTarget)
+  const handleMenuClose = () => setMenu(null)
+  
+  return (
+    <header className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            className={classes.menuButton}
+            aria-label="Menu Appbar"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleMenu}
+            color="inherit"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Menu
+            id="menu-appbar"
+            anchorEl={menu}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            keepMounted
+            open={openMenu}
+            onClose={handleMenuClose}
+          >
+            <MenuItem onClick={handleMenuClose}>
+              <Link to="/" style={{ textDecoration: 'none' }}>
+                Home
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleMenuClose}>
+              <Link to="/info" style={{ textDecoration: 'none' }}>
+                Info
+              </Link>
+            </MenuItem>
+          </Menu>
+          <Typography variant="h6" className={classes.title}>
+            Cryptocurrency
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    </header>
+  );
 }
 
-export default withStyles(styles)(Header);
+export default Header;

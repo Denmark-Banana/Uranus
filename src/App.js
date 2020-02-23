@@ -6,7 +6,7 @@ import Order from './routes/Order';
 import Header from './components/partials/Header';
 import Footer from './components/partials/Footer';
 
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import './App.css';
 import { purple, red } from '@material-ui/core/colors';
@@ -26,8 +26,6 @@ function App() {
       <Router>
         <ThemeProvider theme={theme}>
           <Header />
-          <Link to="/" style={{ textDecoration: 'none' }}>Home</Link>{' '} 
-          <Link to={{ pathname: '/info' }} style={{ textDecoration: 'none' }}>Info</Link>{' '}
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/info" component={Info} />
