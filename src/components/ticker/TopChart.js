@@ -54,7 +54,7 @@ class TopChart extends React.Component {
               {key}
             </Typography>
             <Typography color="secondary" variant="h6">
-              {ticker.max_price} 원
+              {parseInt(ticker.max_price).toLocaleString()} 원
             </Typography>
             <Typography color="secondary">
               {ticker.fluctate_rate_24H > 0

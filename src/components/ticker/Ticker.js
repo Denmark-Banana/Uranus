@@ -39,7 +39,7 @@ function Ticker({
       <TableCell>
         {fluctate_rate_24H > 0 ? '+' + fluctate_rate_24H : fluctate_rate_24H}%
       </TableCell>
-      <TableCell>{parseInt(acc_trade_value_24H)} 원</TableCell>
+      <TableCell>{acc_trade_value_24H} 원</TableCell>
       <TableCell>
         <InputIcon />
       </TableCell>

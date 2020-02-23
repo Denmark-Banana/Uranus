@@ -21,6 +21,18 @@ const styles = theme => ({
   },
 });
 
+const columns = [
+  { id: 'coinName', label: '암호화폐명' },
+  { id: 'minPrice', label: '최저가' },
+  { id: 'maxPrice', label: '최고가' },
+  { id: 'fluctate_Rate_24H', label: '변동률(24H)' },
+  { id: 'acc_trade_Value_24H', label: '거래금액(24H)' },
+  { id: 'deposit', label: '입금' },
+  { id: 'withdraw', label: '출금' },
+  { id: 'chart', label: '차트' },
+  { id: 'deal', label: '거래' },
+];
+
 class TickerList extends React.Component {
   render() {
     const { tickers, classes } = this.props;
@@ -29,15 +41,11 @@ class TickerList extends React.Component {
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <TableCell>암호화폐명</TableCell>
-              <TableCell>최저가</TableCell>
-              <TableCell>최고가</TableCell>
-              <TableCell>변동률(24H)</TableCell>
-              <TableCell>거래금액(24H)</TableCell>
-              <TableCell>입금</TableCell>
-              <TableCell>출금</TableCell>
-              <TableCell>차트</TableCell>
-              <TableCell>거래</TableCell>
+              {columns.map(column => (
+                <TableCell key={column.id} align={column.align}>
+                  {column.label}
+                </TableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -45,10 +53,10 @@ class TickerList extends React.Component {
               <Ticker
                 key={key}
                 id={key}
-                min_price={ticker.min_price}
-                max_price={ticker.max_price}
+                min_price={parseInt(ticker.min_price).toLocaleString()}
+                max_price={parseInt(ticker.max_price).toLocaleString()}
                 fluctate_rate_24H={ticker.fluctate_rate_24H}
-                acc_trade_value_24H={ticker.acc_trade_value_24H}
+                acc_trade_value_24H={parseInt(ticker.acc_trade_value_24H).toLocaleString()}
               />
             ))}
           </TableBody>
@@ -60,7 +68,7 @@ class TickerList extends React.Component {
 
 TickerList.propTypes = {
   tickers: PropTypes.array.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(TickerList);
