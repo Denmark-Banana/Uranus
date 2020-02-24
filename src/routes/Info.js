@@ -8,7 +8,7 @@ class Info extends React.Component {
   };
   
   componentDidMount = async () => {
-    const info = await getData('/api/info/balance');
+    const info = await getData('/api/info/balance/BTC');
     this.setState({ info });
   };
 

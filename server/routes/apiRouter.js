@@ -1,9 +1,10 @@
 import express from 'express';
-import { getTickers, getBalance } from '../controllers/apiController';
+import { getTickers, getBalance, getCandleStick } from '../controllers/apiController';
 
 const apiRouter = express.Router();
 
-apiRouter.get('/ticker', getTickers);
-apiRouter.get('/info/balance', getBalance);
+apiRouter.get('/ticker/:id', getTickers);
+apiRouter.get('/info/balance/:id', getBalance);
+apiRouter.get('/order/:id', getCandleStick);
 
 export default apiRouter;

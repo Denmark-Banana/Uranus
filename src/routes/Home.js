@@ -11,7 +11,7 @@ class Home extends React.Component {
   };
 
   componentDidMount = async () => {
-    const tickers = await getData('/api/ticker');
+    const tickers = await getData('/api/ticker/ALL');
     this.setState({ tickers: Object.entries(tickers) });
   };
   render() {
