@@ -27,9 +27,9 @@ function Header() {
   const [menu, setMenu] = React.useState(null);
   const openMenu = Boolean(menu);
 
-  const handleMenu = event => setMenu(event.currentTarget)
-  const handleMenuClose = () => setMenu(null)
-  
+  const handleMenu = event => setMenu(event.currentTarget);
+  const handleMenuClose = () => setMenu(null);
+
   return (
     <header className={classes.root}>
       <AppBar position="static">
@@ -55,16 +55,12 @@ function Header() {
             open={openMenu}
             onClose={handleMenuClose}
           >
-            <MenuItem onClick={handleMenuClose}>
-              <Link to="/" style={{ textDecoration: 'none' }}>
-                Home
-              </Link>
-            </MenuItem>
-            <MenuItem onClick={handleMenuClose}>
-              <Link to="/info" style={{ textDecoration: 'none' }}>
-                Info
-              </Link>
-            </MenuItem>
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <MenuItem onClick={handleMenuClose}>Home</MenuItem>
+            </Link>
+            <Link to="/info" style={{ textDecoration: 'none' }}>
+              <MenuItem onClick={handleMenuClose}>Info</MenuItem>
+            </Link>
           </Menu>
           <Typography variant="h6" className={classes.title}>
             Cryptocurrency
